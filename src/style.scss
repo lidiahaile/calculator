@@ -22,6 +22,12 @@ $color-five: black;
         width: 100%;
         height: 200px;
         background-color: $color-five;
+        color: $color-four;
+        text-align: right;
+        display: flex;
+        align-items: flex-end;
+        justify-content: end;
+        font-size: 100px;
     }
 
     button{
@@ -54,7 +60,7 @@ $color-five: black;
       color: $color-four;
     }
 
-    
+
     .calculator__button3--zero {
       width: 48%;
       border-radius: 50px;
