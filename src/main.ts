@@ -38,7 +38,7 @@ numbers.forEach((num)=>{
 
 
 
-//EVENT LISTENERS FOR OPERATORS BUTTONS
+//EVENT LISTENER FOR OPERATORS BUTTONS
 const handleOperatorsClick = ( event :Event) =>{
     console.log("Clicked operator button event", event);
      const clickedOpButton = event.target.innerText;
@@ -50,6 +50,15 @@ operators.forEach((opButton) =>{
     opButton.addEventListener("click", handleOperatorsClick )
 });
 
+//EVENT LISTENERS FOR CANCEL BUTTON
+
+const handleCleanButton = ( event : Event) => {
+console.log("Clicked C button event", event);
+const clickedCleanButton =event.target.innerText;
+resultBox.innerText='';
+}
+
+clearBtn.addEventListener("click",handleCleanButton)
 
 
 
