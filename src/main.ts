@@ -7,12 +7,13 @@ const numbers = document.querySelectorAll<HTMLButtonElement>("#number");
 const equalTo =document.querySelector<HTMLButtonElement>(".calculator__button2--equal");
 const clearBtn =document.querySelector<HTMLButtonElement>(".calculator__button1--c");
 const dotButton =document.querySelector<HTMLButtonElement>(".calculator__button3--dot")
+const signButton= document.querySelector<HTMLButtonElement>(".calculator__button1--sign")
 
 
 
 
 //Throw an error
-if(!resultBox || !operators || !numbers || !equalTo ||!clearBtn || !dotButton){
+if(!resultBox || !operators || !numbers || !equalTo ||!clearBtn || !dotButton || !signButton){
     throw new Error ("Issue with selectors");
 }
 
@@ -70,20 +71,21 @@ clearBtn.addEventListener("click",handleCleanButton)
 const handleDotButton = ( event : Event ) => {
     console.log("Clicked the dot button event", event)
     const clickedDotButton =event.target.innerText;
-    if (variableOne !== Math.floor() || variabletwo !== Math.floor()){
-        resultBox.innerText=variableOne+= clickedDotButton;
-        resultBox.innerText=variableTwo+= clickedDotButton;
-        
-    }
-    else{
-        variableOne= variableOne;
-        variableTwo=variableTwo;
-    }
-    
+     resultBox.innerText=variableOne+= clickedDotButton;
+     resultBox.innerText=variableTwo+= clickedDotButton;
+  
 }
 dotButton.addEventListener("click", handleDotButton)
 
+//EVENT LISTENER FOR POSITIVE/NEGATIVE BUTTON
 
+const handleSignButton =( event : Event) => {
+console.log("Clicked the positive/negative button event", event);
+const clickedSignButton = event.target.innerText;
+resultBox.innerText= variableOne += clickedSignButton;
+resultBox.innerText= variableTwo += clickedSignButton;
+}
+signButton.addEventListener("click", handleSignButton)
 
 
 
