@@ -6,12 +6,13 @@ const operators = document.querySelectorAll<HTMLButtonElement>("#operators");
 const numbers = document.querySelectorAll<HTMLButtonElement>("#number");
 const equalTo =document.querySelector<HTMLButtonElement>(".calculator__button2--equal");
 const clearBtn =document.querySelector<HTMLButtonElement>(".calculator__button1--c");
+const dotButton =document.querySelector<HTMLButtonElement>(".calculator__button3--dot")
 
 
 
 
 //Throw an error
-if(!resultBox || !operators || !numbers || !equalTo ||!clearBtn){
+if(!resultBox || !operators || !numbers || !equalTo ||!clearBtn || !dotButton){
     throw new Error ("Issue with selectors");
 }
 
@@ -50,15 +51,40 @@ operators.forEach((opButton) =>{
     opButton.addEventListener("click", handleOperatorsClick )
 });
 
-//EVENT LISTENERS FOR CANCEL BUTTON
+//EVENT LISTENER FOR CANCEL BUTTON
 
 const handleCleanButton = ( event : Event) => {
 console.log("Clicked C button event", event);
 const clickedCleanButton =event.target.innerText;
 resultBox.innerText='';
+variableOne= '';
+variableTwo= '';
+operator= '';
 }
 
 clearBtn.addEventListener("click",handleCleanButton)
+
+
+
+//EVENT LISTENER FOR DOT BUTTON
+const handleDotButton = ( event : Event ) => {
+    console.log("Clicked the dot button event", event)
+    const clickedDotButton =event.target.innerText;
+    if (variableOne !== Math.floor(number) || variabletwo !== Math.floor(number)){
+        resultBox.innerText=variableOne += clickedDotButton;
+        resultBox.innerText=variableTwo+= clickedDotButton;
+        
+    }
+    else{
+        variableOne= variableOne;
+        variableTwo=variableTwo;
+    }
+    
+}
+dotButton.addEventListener("click", handleDotButton)
+
+
+
 
 
 
