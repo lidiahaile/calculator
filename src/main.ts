@@ -1,6 +1,6 @@
 import "./style.scss";
 
-//Elements HTML access
+//HTML ELEMENTS ACCESS
 const resultBox = document.querySelector<HTMLDivElement>(".calculator__result-box");
 const operators = document.querySelectorAll<HTMLButtonElement>("#operators");
 const numbers = document.querySelectorAll<HTMLButtonElement>("#number");
@@ -10,17 +10,18 @@ const dotButton =document.querySelector<HTMLButtonElement>(".calculator__button3
 const signButton= document.querySelector<HTMLButtonElement>(".calculator__button1--sign")
 
 
-
-
 //THROW NEW ERROR
 if(!resultBox || !operators || !numbers || !equalTo ||!clearBtn || !dotButton || !signButton){
     throw new Error ("Issue with selectors");
 }
 
+
+//VARIABLES
 let variableOne = "";
 let variableTwo = "";
 let operator = "";
 let operationResult ="";
+
 
 
 //EVENT LISTENER FOR NUMBER BUTTONS
@@ -49,11 +50,11 @@ const handleCleanButton = ( event : Event) => {
 console.log("Clicked C button event", event);
 const clickedCleanButton =event.target.innerText;
 resultBox.innerText='';
-variableOne= '';
-variableTwo= '';
-operator= '';
+variableOne="";
+variableTwo="";
+operator="";
+operationResult= "";
 }
-
 clearBtn.addEventListener("click",handleCleanButton)
 
 
@@ -61,20 +62,26 @@ clearBtn.addEventListener("click",handleCleanButton)
 //EVENT LISTENER FOR DOT BUTTON
 const handleDotButton = ( event : Event ) => {
     console.log("Clicked the dot button event", event)
-    const clickedDotButton =event.target.innerText;
-     resultBox.innerText=variableOne+= clickedDotButton;
-     resultBox.innerText=variableTwo+= clickedDotButton;
-  
+    const clickedDotButton = event.target.innerText;
+    if (variableOne!==0 && operator===""){
+ resultBox.innerText= (variableOne= variableOne+=clickedDotButton);
+    } else if (variableTwo!==0 ){
+resultBox.innerText= (variableTwo= variableTwo+= clickedDotButton);
+    }     
 }
 dotButton.addEventListener("click", handleDotButton)
 
-//EVENT LISTENER FOR POSITIVE/NEGATIVE BUTTON
 
+
+//EVENT LISTENER FOR POSITIVE/NEGATIVE BUTTON
 const handleSignButton =( event : Event) => {
 console.log("Clicked the positive/negative button event", event);
 const clickedSignButton = event.target.innerText;
-resultBox.innerText= variableOne += clickedSignButton;
-resultBox.innerText= variableTwo += clickedSignButton;
+if (variableOne!== 0 && operator ===""){
+resultBox.innerText=(variableOne+=  variableOne +clickedSignButton );
+} else if (variableTwo!== 0 ){
+resultBox.innerText=(variableTwo+=  variableTwo +clickedSignButton); 
+}
 }
 signButton.addEventListener("click", handleSignButton)
 
@@ -83,14 +90,16 @@ signButton.addEventListener("click", handleSignButton)
 //EVENT LISTENER FOR OPERATORS BUTTONS
 const handleOperatorsClick = ( event :Event) =>{
     console.log("Clicked operator button event", event);
-     const clickedOpButton = event.target.innerText;
-    operator = clickedOpButton;
-    resultBox.innerText= operator;
+     const clickedOpButton = event.target.innerText
+     operator = clickedOpButton;
+     
+         
 }
-
 operators.forEach((opButton) =>{
     opButton.addEventListener("click", handleOperatorsClick )
 });
+
+
 
 //EVENT LISTENER FOR EQUAL BUTTON
 const handleEqualToClick  = ( event :Event) =>{
@@ -109,7 +118,9 @@ const handleEqualToClick  = ( event :Event) =>{
     }else if( operator==="%"){
          operationResult= Number(variableOne)/100;
     }
+   
     resultBox.innerText= operationResult;
+   
 }
 equalTo.addEventListener("click", handleEqualToClick )
 
