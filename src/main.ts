@@ -87,6 +87,9 @@ resultBox.innerText= variableTwo += clickedSignButton;
 }
 signButton.addEventListener("click", handleSignButton)
 
+//CHANGE TEXT OF THE SIGN BUTTON 
+signButton.innerText = " -/+"
+
 
 
 
