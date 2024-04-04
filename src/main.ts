@@ -70,8 +70,8 @@ clearBtn.addEventListener("click",handleCleanButton)
 const handleDotButton = ( event : Event ) => {
     console.log("Clicked the dot button event", event)
     const clickedDotButton =event.target.innerText;
-    if (variableOne !== Math.floor(number) || variabletwo !== Math.floor(number)){
-        resultBox.innerText=variableOne += clickedDotButton;
+    if (variableOne !== Math.floor() || variabletwo !== Math.floor()){
+        resultBox.innerText=variableOne+= clickedDotButton;
         resultBox.innerText=variableTwo+= clickedDotButton;
         
     }
