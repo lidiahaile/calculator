@@ -2,7 +2,7 @@ import "./style.scss";
 
 //Elements HTML access
 const resultBox = document.querySelector<HTMLDivElement>(".calculator__result-box");
-const operators = document.querySelector<HTMLButtonElement>("#operators");
+const operators = document.querySelectorAll<HTMLButtonElement>("#operators");
 const numbers = document.querySelectorAll<HTMLButtonElement>("#number");
 const equalTo =document.querySelector<HTMLButtonElement>(".calculator__button2--equal");
 const clearBtn =document.querySelector<HTMLButtonElement>(".calculator__button1--c");
@@ -20,10 +20,10 @@ let variableTwo = "";
 let operator = "";
 
 
-//event listeners for numbers buttons
+//EVENT LISTENER FOR NUMBER BUTTONS
 const handleNumberClick = (event : Event) =>{
-    console.log("clicked button event",event);
-   const clickedNumber = event.target.innerText
+    console.log("Clicked number button event",event);
+   const clickedNumber = event.target.innerText;
     if (operator === "") {
        variableOne += Number( clickedNumber);
        resultBox.innerText= Number(variableOne);
@@ -35,6 +35,21 @@ const handleNumberClick = (event : Event) =>{
 numbers.forEach((num)=>{
     num.addEventListener("click", handleNumberClick)
 });
+
+
+
+//EVENT LISTENERS FOR OPERATORS BUTTONS
+const handleOperatorsClick = ( event :Event) =>{
+    console.log("Clicked operator button event", event);
+     const clickedOpButton = event.target.innerText;
+    operator = clickedOpButton;
+    resultBox.innerText= operator;
+}
+
+operators.forEach((opButton) =>{
+    opButton.addEventListener("click", handleOperatorsClick )
+});
+
 
 
 
