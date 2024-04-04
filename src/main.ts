@@ -12,7 +12,7 @@ const signButton= document.querySelector<HTMLButtonElement>(".calculator__button
 
 
 
-//Throw an error
+//THROW NEW ERROR
 if(!resultBox || !operators || !numbers || !equalTo ||!clearBtn || !dotButton || !signButton){
     throw new Error ("Issue with selectors");
 }
@@ -20,6 +20,7 @@ if(!resultBox || !operators || !numbers || !equalTo ||!clearBtn || !dotButton ||
 let variableOne = "";
 let variableTwo = "";
 let operator = "";
+let operationResult ="";
 
 
 //EVENT LISTENER FOR NUMBER BUTTONS
@@ -40,17 +41,7 @@ numbers.forEach((num)=>{
 
 
 
-//EVENT LISTENER FOR OPERATORS BUTTONS
-const handleOperatorsClick = ( event :Event) =>{
-    console.log("Clicked operator button event", event);
-     const clickedOpButton = event.target.innerText;
-    operator = clickedOpButton;
-    resultBox.innerText= operator;
-}
 
-operators.forEach((opButton) =>{
-    opButton.addEventListener("click", handleOperatorsClick )
-});
 
 //EVENT LISTENER FOR CANCEL BUTTON
 
@@ -87,8 +78,45 @@ resultBox.innerText= variableTwo += clickedSignButton;
 }
 signButton.addEventListener("click", handleSignButton)
 
-//CHANGE TEXT OF THE SIGN BUTTON 
-signButton.innerText = " -/+"
+
+
+//EVENT LISTENER FOR OPERATORS BUTTONS
+const handleOperatorsClick = ( event :Event) =>{
+    console.log("Clicked operator button event", event);
+     const clickedOpButton = event.target.innerText;
+    operator = clickedOpButton;
+    resultBox.innerText= operator;
+}
+
+operators.forEach((opButton) =>{
+    opButton.addEventListener("click", handleOperatorsClick )
+});
+
+//EVENT LISTENER FOR EQUAL BUTTON
+const handleEqualToClick  = ( event :Event) =>{
+     console.log("Clicked equal button event", event);
+    const clickedEqualButton=event.target.innerText;
+
+    if (operator ==="+"){
+        operationResult= Number(variableOne) + Number(variableTwo);
+
+    } else if(operator ==="x"){
+        operationResult= Number(variableOne) *Number(variableTwo);
+    }else if(operator === "-"){
+        operationResult= Number(variableOne) - Number(variableTwo);
+    }else if(operator=== "÷"){
+        operationResult= Number(variableOne) / Number(variableTwo);
+    }else if( operator==="%"){
+         operationResult= Number(variableOne)/100;
+    }
+    resultBox.innerText= operationResult;
+}
+equalTo.addEventListener("click", handleEqualToClick )
+
+
+
+
+
 
 
 
